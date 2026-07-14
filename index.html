@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A simple weather forecast application powered by Open-Meteo.">
+  <title>Weather Forecast</title>
+  <link rel="preconnect" href="https://geocoding-api.open-meteo.com">
+  <link rel="preconnect" href="https://api.open-meteo.com">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="#top" aria-label="Weather Forecast home">Weather<span>Forecast</span></a>
+    <p id="local-date-time" class="local-date-time" aria-live="polite"></p>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow">Live weather, anywhere</p>
+      <h1 id="hero-title">Know the sky before you step outside.</h1>
+      <form id="search-form" class="search-bar" role="search">
+        <label class="sr-only" for="city-input">Search for a city</label>
+        <input id="city-input" type="search" placeholder="Search an Indian city, district, or block" autocomplete="off" required>
+        <button type="submit">Search</button>
+      </form>
+      <p id="error-message" class="message error" role="alert" hidden></p>
+    </section>
+
+    <section id="weather-content" class="weather-content" aria-live="polite" hidden>
+      <section class="current-card glass-card" aria-labelledby="current-title">
+        <div>
+          <p id="location" class="location"></p>
+          <h2 id="current-title">Current weather</h2>
+          <p id="weather-condition" class="condition"></p>
+          <p class="updated">Updated <time id="updated-time"></time></p>
+        </div>
+        <div class="current-main">
+          <img id="current-icon" class="weather-icon large-icon" src="icons/clear.svg" alt="">
+          <p id="temperature" class="temperature"></p>
+        </div>
+        <dl class="weather-details">
+          <div><dt>Feels like</dt><dd id="feels-like">—</dd></div>
+          <div><dt>Humidity</dt><dd id="humidity">—</dd></div>
+          <div><dt>Wind speed</dt><dd id="wind-speed">—</dd></div>
+          <div><dt>Pressure</dt><dd id="pressure">—</dd></div>
+          <div><dt>Sunrise</dt><dd id="sunrise">—</dd></div>
+          <div><dt>Sunset</dt><dd id="sunset">—</dd></div>
+        </dl>
+      </section>
+
+      <!-- Rule-based recommendations generated from the weather data already on this page. -->
+      <section class="farming-section" aria-labelledby="farming-title">
+        <div class="farming-heading">
+          <div><p class="eyebrow">Field planning</p><h2 id="farming-title">🌾 Smart Farming Advisory</h2></div>
+          <label class="crop-select" for="crop-select">Select crop
+            <select id="crop-select">
+              <option value="Wheat">Wheat</option><option value="Rice">Rice</option><option value="Soybean">Soybean</option>
+              <option value="Cotton">Cotton</option><option value="Maize">Maize</option><option value="Tomato">Tomato</option><option value="Onion">Onion</option>
+            </select>
+          </label>
+        </div>
+        <div id="farming-status" class="farming-status" aria-live="polite"></div>
+        <div id="advisory-cards" class="advisory-grid" aria-live="polite"></div>
+        <section id="farming-summary" class="farming-summary glass-card" aria-labelledby="summary-title"></section>
+      </section>
+
+      <section class="forecast-section" aria-labelledby="hourly-title">
+        <div class="section-heading"><p class="eyebrow">Today</p><h2 id="hourly-title">Hourly forecast</h2></div>
+        <div id="hourly-forecast" class="hourly-list" aria-label="Hourly weather forecast"></div>
+      </section>
+
+      <section class="forecast-section" aria-labelledby="daily-title">
+        <div class="section-heading"><p class="eyebrow">This week</p><h2 id="daily-title">7-day forecast</h2></div>
+        <div id="daily-forecast" class="daily-grid" aria-label="Seven day weather forecast"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer><p>Weather Forecast &middot; Powered by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a></p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
